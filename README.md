@@ -1,1 +1,1 @@
-# Develop REST API with Lumen and JWT authentication
+# Develop REST API with Lumen (AUTH/JWT)
