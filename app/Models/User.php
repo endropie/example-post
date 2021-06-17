@@ -20,7 +20,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'name', 'email', 'mobile'
     ];
 
     /**
@@ -39,7 +39,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function getJWTIdentifier()
     {
-        return $this->getKey();
+        return [
+            $this->getKeyName() => $this->getKey(),
+            // 'mobile' => $this->mobile,
+            // 'email' => $this->email,
+        ];
     }
 
     /**

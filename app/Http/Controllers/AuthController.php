@@ -9,38 +9,23 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $name = $request->name;
-        $email = $request->email;
-        $password = $request->password;
-
-        // Check if field is empty
-        if (empty($name) or empty($email) or empty($password)) {
-            return response()->json(['status' => 'error', 'message' => 'You must fill all the fields']);
-        }
-
-        // Check if email is valid
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return response()->json(['status' => 'error', 'message' => 'You must enter a valid email']);
-        }
-
-        // Check if password is greater than 5 character
-        if (strlen($password) < 6) {
-            return response()->json(['status' => 'error', 'message' => 'Password should be min 6 character']);
-        }
-
-        // Check if user already exist
-        if (User::where('email', '=', $email)->exists()) {
-            return response()->json(['status' => 'error', 'message' => 'User already exists with this email']);
-        }
+        $this->validate($request, [
+            'name' => ["required"],
+            'mobile' => ["required", "unique:users,mobile"],
+            'email' => ["nullable", "email", "unique:users,email"],
+            'password' => ["required", "min:6"],
+        ]);
 
         // Create new user
         try {
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
+            $user->mobile = $request->mobile;
             $user->password = app('hash')->make($request->password);
 
             if ($user->save()) {
+                $request->merge(['username' => $request->mobile ?? $request->email ?? null]);
                 return $this->login($request);
             }
         } catch (\Exception $e) {
@@ -48,11 +33,6 @@ class AuthController extends Controller
         }
     }
 
-    /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function logout()
     {
         auth()->logout();
@@ -62,15 +42,16 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $email = $request->email;
-        $password = $request->password;
+        $mode = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'mobile';
 
-        // Check if field is empty
-        if (empty($email) or empty($password)) {
-            return response()->json(['status' => 'error', 'message' => 'You must fill all the fields']);
-        }
+        $this->validate($request, [
+            'username' => ["required", "exists:users,$mode"],
+            'password' => ["required"],
+        ]);
 
-        $credentials = request(['email', 'password']);
+        $request->merge(["$mode" => $request->username]);
+
+        $credentials = request([$mode, 'password']);
 
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
