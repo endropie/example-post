@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e47c7f1c67fb757af982d8d8d7e13a87",
+    "content-hash": "30f1b0edc59d0a274ee72fb7f3ceeac2",
     "packages": [
         {
             "name": "brick/math",
@@ -472,19 +472,18 @@
         },
         {
             "name": "endropie/api-toolkit",
-            "version": "dev-master",
+            "version": "0.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/endropie/api-toolkit.git",
-                "reference": "e0661656ae0b190df20f8d0c7e60926763119d55"
+                "reference": "6229210f72f4a13dae9bffad0948ac9c9028f471"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/endropie/api-toolkit/zipball/e0661656ae0b190df20f8d0c7e60926763119d55",
-                "reference": "e0661656ae0b190df20f8d0c7e60926763119d55",
+                "url": "https://api.github.com/repos/endropie/api-toolkit/zipball/6229210f72f4a13dae9bffad0948ac9c9028f471",
+                "reference": "6229210f72f4a13dae9bffad0948ac9c9028f471",
                 "shasum": ""
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -503,9 +502,9 @@
             ],
             "support": {
                 "issues": "https://github.com/endropie/api-toolkit/issues",
-                "source": "https://github.com/endropie/api-toolkit/tree/master"
+                "source": "https://github.com/endropie/api-toolkit/tree/0.0.1"
             },
-            "time": "2021-07-01T11:18:10+00:00"
+            "time": "2021-07-01T11:37:15+00:00"
         },
         {
             "name": "flipbox/lumen-generator",
@@ -7536,9 +7535,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "endropie/api-toolkit": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
