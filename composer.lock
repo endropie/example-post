@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "30f1b0edc59d0a274ee72fb7f3ceeac2",
+    "content-hash": "8c701f4bb71ce51d2d3995f5f7df9608",
     "packages": [
         {
             "name": "brick/math",
@@ -472,16 +472,16 @@
         },
         {
             "name": "endropie/api-toolkit",
-            "version": "0.0.1",
+            "version": "0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/endropie/api-toolkit.git",
-                "reference": "6229210f72f4a13dae9bffad0948ac9c9028f471"
+                "reference": "651d3edf5f472d397fdddebbe160c7480b35d1ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/endropie/api-toolkit/zipball/6229210f72f4a13dae9bffad0948ac9c9028f471",
-                "reference": "6229210f72f4a13dae9bffad0948ac9c9028f471",
+                "url": "https://api.github.com/repos/endropie/api-toolkit/zipball/651d3edf5f472d397fdddebbe160c7480b35d1ba",
+                "reference": "651d3edf5f472d397fdddebbe160c7480b35d1ba",
                 "shasum": ""
             },
             "type": "library",
@@ -502,9 +502,9 @@
             ],
             "support": {
                 "issues": "https://github.com/endropie/api-toolkit/issues",
-                "source": "https://github.com/endropie/api-toolkit/tree/0.0.1"
+                "source": "https://github.com/endropie/api-toolkit/tree/0.0.2"
             },
-            "time": "2021-07-01T11:37:15+00:00"
+            "time": "2021-07-01T13:26:11+00:00"
         },
         {
             "name": "flipbox/lumen-generator",

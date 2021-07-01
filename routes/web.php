@@ -28,11 +28,14 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->get('/user', 'AuthController@user');
         $router->post('/logout', 'AuthController@logout');
-    });
 
-    $router->get('/users', 'UserController@index');
+        $router->get('/users', 'UserController@index');
+        $router->get('/users/{id}', 'UserController@show');
 
-    $router->get('/users/{id}', function ($id) use ($router) {
-        return new \App\Http\Resources\UserResource(\App\Models\User::find($id));
+        $router->get('/posts', 'PostController@index');
+        $router->post('/posts', 'PostController@store');
+        $router->get('/posts/{id}', 'PostController@show');
+        $router->put('/posts/{id}', 'PostController@update');
+        $router->delete('/posts/{id}', 'PostController@destroy');
     });
 });

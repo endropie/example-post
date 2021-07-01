@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
     protected function user()
     {
         $user = new \App\Models\User();
-        $user->name = 'Administator';
         $user->email = 'admin@example.com';
         $user->mobile = '081234567890';
         $user->password = app('hash')->make('123456');
@@ -30,7 +29,10 @@ class DatabaseSeeder extends Seeder
 
     public function factories()
     {
-        \App\Models\User::factory()->count(10)->create();
-        \App\Models\Profile::factory()->count(10)->create();
+        \App\Models\User::factory()->count(10)->create()->each(function ($user) {
+            $user->profile()->save(\App\Models\Profile::factory()->make());
+        });
+
+        \App\Models\Post::factory()->count(500)->create();
     }
 }

@@ -16,7 +16,7 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->string('fullname');
-            $table->string('nickname');
+            $table->enum('gender', ['male', 'female']);
             $table->foreignId('user_id');
             $table->timestamps();
         });

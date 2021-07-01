@@ -23,14 +23,15 @@ class UserFactory extends Factory
     {
         $abilities = User::OPTION_ROLES;
 
-        $random = array_values(array_intersect_key( $abilities, array_flip( array_rand( $abilities, 2 ) ) ));
-
         $once = $abilities[array_rand($abilities)];
 
+        $this->faker->addProvider(new \Faker\Provider\id_ID\PhoneNumber($this->faker));
+
+        $mobile = preg_replace('~[^0-9]~', '', $this->faker->unique()->phoneNumber);
+
         return [
-            'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
-            'mobile' => $this->faker->unique()->phoneNumber,
+            'mobile' => $mobile,
             'password' => app('hash')->make('123456'),
             'ability' => [$once]
         ];

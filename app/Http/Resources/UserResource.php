@@ -16,7 +16,6 @@ class UserResource extends Resource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
             $this->mergeField('email', $this->email),
             $this->mergeField('mobile', $this->mobile),
             $this->mergeField('ability', $this->ability),

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Endropie\ApiToolkit\Http\Resource;
 
-class ProfileResource extends Resource
+class PostResource extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,9 @@ class ProfileResource extends Resource
     {
         return [
             'id' => $this->id,
-            'fullname' => $this->fullname,
+            'title' => $this->title,
             $this->mergeAttributes(),
+            $this->mergeInclude('user', new UserResource($this->user))
         ];
     }
 }

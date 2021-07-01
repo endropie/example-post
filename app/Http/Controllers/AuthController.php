@@ -11,7 +11,6 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $this->validate($request, [
-            'name' => ["required"],
             'mobile' => ["required", "unique:users,mobile"],
             'email' => ["nullable", "email", "unique:users,email"],
             'password' => ["required", "min:6"],
@@ -20,7 +19,6 @@ class AuthController extends Controller
         // Create new user
         try {
             $user = new User();
-            $user->name = $request->name;
             $user->email = $request->email;
             $user->mobile = $request->mobile;
             $user->password = app('hash')->make($request->password);
@@ -61,7 +59,7 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
-    public function user ()
+    public function user()
     {
         $user = auth()->user();
 

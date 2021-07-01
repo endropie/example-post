@@ -13,4 +13,35 @@ class UserController extends Controller
         $users = User::filter()->paginate();
         return UserResource::collection($users);
     }
+
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+
+        return new UserResource($user);
+    }
+
+    public function update($id, Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required',
+            'mobile' => 'required',
+            'ability' => 'nullbale|array',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $user->update($request->only(['email', 'mobile', 'ability']));
+
+        return new UserResource($user);
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+
+        $user = $user->delete();
+
+        return response()->json(['message' => 'Remove Succesfully']);
+    }
 }

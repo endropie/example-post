@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Profile;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProfileFactory extends Factory
+class PostFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Profile::class;
+    protected $model = Post::class;
 
     /**
      * Define the model's default state.
@@ -22,11 +22,10 @@ class ProfileFactory extends Factory
      */
     public function definition()
     {
-        $gender = $this->faker->randomElement(['male', 'female']);
-
         return [
-            'fullname' => $this->faker->name($gender),
-            'gender' => $gender,
+            'title' => $this->faker->text,
+            'content' => $this->faker->paragraphs(10, true),
+            'user_id' => User::all()->random(1)->first()->id,
         ];
     }
 }
