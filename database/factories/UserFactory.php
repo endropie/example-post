@@ -21,11 +21,18 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $abilities = User::OPTION_ROLES;
+
+        $random = array_values(array_intersect_key( $abilities, array_flip( array_rand( $abilities, 2 ) ) ));
+
+        $once = $abilities[array_rand($abilities)];
+
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'mobile' => $this->faker->unique()->phoneNumber,
-            'password' => app('hash')->make('123456')
+            'password' => app('hash')->make('123456'),
+            'ability' => [$once]
         ];
     }
 }

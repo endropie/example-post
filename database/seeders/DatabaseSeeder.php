@@ -13,18 +13,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->users();
+        $this->user();
+        $this->factories();
     }
 
-    protected function users()
+    protected function user()
     {
         $user = new \App\Models\User();
         $user->name = 'Administator';
         $user->email = 'admin@example.com';
         $user->mobile = '081234567890';
         $user->password = app('hash')->make('123456');
+        $user->ability = ['*'];
         $user->save();
+    }
 
+    public function factories()
+    {
         \App\Models\User::factory()->count(10)->create();
+        \App\Models\Profile::factory()->count(10)->create();
     }
 }

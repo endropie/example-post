@@ -1,11 +1,16 @@
 {
     "name": "laravel/lumen",
     "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "keywords": [
+        "framework",
+        "laravel",
+        "lumen"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": "^7.3|^8.0",
+        "endropie/api-toolkit": "dev-master",
         "flipbox/lumen-generator": "^8.2",
         "laravel/lumen-framework": "^8.0",
         "tymon/jwt-auth": "^1.0"

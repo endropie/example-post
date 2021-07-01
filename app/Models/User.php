@@ -9,50 +9,44 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Endropie\ApiToolkit\Traits\HasFilterable;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
-    use Authenticatable, Authorizable, HasFactory;
+    use Authenticatable, Authorizable, HasFactory, HasFilterable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    const OPTION_ROLES = ['client', 'manager', 'user', 'vendor'];
+
+    protected $attributes = [
+        'ability' => '[]'
+    ];
+
     protected $fillable = [
-        'name', 'email', 'mobile'
+        'name', 'email', 'mobile', 'ability'
     ];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
+    protected $casts = [
+        'ability' => 'array'
+    ];
+
     protected $hidden = [
-        'password',
+        'password', 'created_at', 'updated_at'
     ];
 
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
+    public function profile()
     {
-        return [
-            $this->getKeyName() => $this->getKey(),
-            // 'mobile' => $this->mobile,
-            // 'email' => $this->email,
-        ];
+        return $this->hasOne(Profile::class);
     }
 
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
     public function getJWTCustomClaims()
     {
-        return [];
+        return [
+            'ability' => $this->ability
+        ];
     }
 }

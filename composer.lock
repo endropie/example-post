@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f558f02cfeafb9f4e98d3ef236344071",
+    "content-hash": "e47c7f1c67fb757af982d8d8d7e13a87",
     "packages": [
         {
             "name": "brick/math",
@@ -469,6 +469,43 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
+        },
+        {
+            "name": "endropie/api-toolkit",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/endropie/api-toolkit.git",
+                "reference": "e0661656ae0b190df20f8d0c7e60926763119d55"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/endropie/api-toolkit/zipball/e0661656ae0b190df20f8d0c7e60926763119d55",
+                "reference": "e0661656ae0b190df20f8d0c7e60926763119d55",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Endropie\\ApiToolkit\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "endropie",
+                    "email": "hendrowibo@msn.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/endropie/api-toolkit/issues",
+                "source": "https://github.com/endropie/api-toolkit/tree/master"
+            },
+            "time": "2021-07-01T11:18:10+00:00"
         },
         {
             "name": "flipbox/lumen-generator",
@@ -7499,12 +7536,14 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "endropie/api-toolkit": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

@@ -26,7 +26,13 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('/login', 'AuthController@login');
 
     $router->group(['middleware' => 'auth'], function () use ($router) {
+        $router->get('/user', 'AuthController@user');
         $router->post('/logout', 'AuthController@logout');
+    });
 
+    $router->get('/users', 'UserController@index');
+
+    $router->get('/users/{id}', function ($id) use ($router) {
+        return new \App\Http\Resources\UserResource(\App\Models\User::find($id));
     });
 });

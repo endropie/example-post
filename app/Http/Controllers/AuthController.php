@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -58,6 +59,14 @@ class AuthController extends Controller
         }
 
         return $this->respondWithToken($token);
+    }
+
+    public function user ()
+    {
+        $user = auth()->user();
+
+        return new UserResource($user);
+        // return UserResource::collection(User::paginate());
     }
 
     /**
