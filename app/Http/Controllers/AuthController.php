@@ -62,8 +62,9 @@ class AuthController extends Controller
     public function user()
     {
         $user = auth()->user();
-
-        return new UserResource($user);
+        $response  = new UserResource($user);
+        $response->default(['email', 'mobile', 'ability']);
+        return $response;
         // return UserResource::collection(User::paginate());
     }
 
