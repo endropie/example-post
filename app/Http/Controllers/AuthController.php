@@ -65,7 +65,29 @@ class AuthController extends Controller
         $response  = new UserResource($user);
         $response->default(['email', 'mobile', 'ability']);
         return $response;
-        // return UserResource::collection(User::paginate());
+    }
+
+    public function passwordChange(Request $request)
+    {
+        $this->validate($request, [
+            'password' => ["required"],
+            'new_password' => ["required", "min:6", "not_in:$request->password"],
+            'new_password_confirm' => ["required", "same:new_password",],
+        ]);
+
+        $user = auth()->user();
+        if (app('hash')->check($request->password, $user->password)) {
+            $user->password = app('hash')->make($request->get('new_password'));
+            $user->save();
+
+            return [
+                'message' => 'Password change success.'
+            ];
+        }
+
+        return response()->json([
+            'message' => 'Password change failed.'
+        ], 400);
     }
 
     /**

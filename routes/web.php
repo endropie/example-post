@@ -28,6 +28,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->get('/user', 'AuthController@user');
         $router->post('/logout', 'AuthController@logout');
+        $router->post('/password/change', 'AuthController@passwordChange');
 
         $router->get('/users', 'UserController@index');
         $router->get('/users/{id}', 'UserController@show');
